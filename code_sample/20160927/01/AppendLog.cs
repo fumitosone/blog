@@ -11,16 +11,16 @@ public void AppendLog(String str)
 {
     // テキストボックスへフォーカス
     this.textbox.Focus();
-	
-	// スクロール位置取得
-	Point point = new Point(0, 0);
-	SendMessage(this.textbox.Handle, 0x04DD, 0, out point);
-	
-	// ログ出力
-	this.textbox.AppendText(str);
-	
-	// スクロール位置を復元
-	SendMessage(this.textbox.Handle, 0x04DE, 0, out point);
+    
+    // スクロール位置取得
+    Point point = new Point(0, 0);
+    SendMessage(this.textbox.Handle, 0x04DD, 0, out point);
+    
+    // ログ出力
+    this.textbox.AppendText(str);
+    
+    // スクロール位置を復元
+    SendMessage(this.textbox.Handle, 0x04DE, 0, out point);
 }
 
 /// <summary>
@@ -31,29 +31,29 @@ public void AppendLog2(String str)
 {
     // テキストボックスへフォーカス
     this.textbox.Focus();
-	
-	// スクロールバーの最終座標取得
-	int min = 0;
-	int max = 0;
-	GetScrollRange(this.textbox.Handle, 1, out min, out max);
-	
-	// スクロール位置取得
-	Point point = new Point(0, 0);
-	SendMessage(this.textbox.Handle, 0x04DD, 0, out point);
-	
-	// 最終行判定
-	bool isLastLine = false;
-	if(max - this.textbox.Height - point.Y <= 0)
-	{
-	    isLastLine = true;
-	}
-	
-	// ログ出力
-	this.textbox.AppendText(str);
-	
-	// スクロール位置を復元
-	if(!isLastLine)
-	{
-	    SendMessage(this.textbox.Handle, 0x04DE, 0, out point);
-	}
+    
+    // スクロールバーの最終座標取得
+    int min = 0;
+    int max = 0;
+    GetScrollRange(this.textbox.Handle, 1, out min, out max);
+    
+    // スクロール位置取得
+    Point point = new Point(0, 0);
+    SendMessage(this.textbox.Handle, 0x04DD, 0, out point);
+    
+    // 最終行判定
+    bool isLastLine = false;
+    if(max - this.textbox.Height - point.Y <= 0)
+    {
+        isLastLine = true;
+    }
+    
+    // ログ出力
+    this.textbox.AppendText(str);
+    
+    // スクロール位置を復元
+    if(!isLastLine)
+    {
+        SendMessage(this.textbox.Handle, 0x04DE, 0, out point);
+    }
 }
